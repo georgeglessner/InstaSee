@@ -1,3 +1,3 @@
-# InstaSee
+# InstaSee ![icon](https://github.com/georgeglessner/InstaSee/blob/master/icon/instasee.png)
 
-Firefox plugin that allows you to view Instagram photos online without being logged in. 
+Firefox add on that allows you to view Instagram photos online without being logged in. 
