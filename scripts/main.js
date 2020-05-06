@@ -26,7 +26,7 @@ document.addEventListener('click', function(event) {
         removePopup();
         break;
       }
-      
+
       target = target.parentNode;
     }
 }, true);
@@ -43,6 +43,11 @@ async function removePopup(){
   document
     .querySelectorAll('[role="presentation"]')
     .forEach(function (element) {
-      element.remove()
+      if(element.nodeName=="DIV"){
+        // hide element and make page scrollable again
+        // element.style.display = "none";
+        element.remove();
+        document.body.style.overflow = 'initial';
+      }
     })
 }
