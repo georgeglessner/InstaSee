@@ -44,7 +44,7 @@ async function removePopup(){
     .querySelectorAll('[role="presentation"]')
     .forEach(function (element) {
       if(element.nodeName=="DIV"){
-        // hide element and make page scrollable again
+        // remove element and make page scrollable again
         element.remove();
         document.body.style.overflow = 'initial';
       }
