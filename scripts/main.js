@@ -6,30 +6,33 @@ let imgPathPattern = /\/p\/[^\/]+\//g;
 // Profile url
 let url = window.location.href.match(urlPattern);
 
-// Listen for click
-document.addEventListener('click', function(event) {
-    // initial target
-    target = event.target;
+// Check if user is logged in
+if(document.cookie.indexOf('ds_user_id') == -1){
+  // Listen for click
+  document.addEventListener('click', function(event) {
+      // initial target
+      target = event.target;
 
-    // Loop through targets until we find the link of image page
-    while (target) {
-      if (target.parentNode instanceof HTMLAnchorElement) {
-        let imgPath = target.parentNode.getAttribute('href');
-        let imgMatch = imgPath.match(imgPattern);
-        let imgPathMatch = imgPath.match(imgPathPattern);
+      // Loop through targets until we find the link of image page
+      while (target) {
+        if (target.parentNode instanceof HTMLAnchorElement) {
+          let imgPath = target.parentNode.getAttribute('href');
+          let imgMatch = imgPath.match(imgPattern);
+          let imgPathMatch = imgPath.match(imgPathPattern);
 
-        if(imgMatch && imgMatch.length > 0){
-          window.open(url[0] + imgMatch[0]);
-        } else if(imgPathMatch && imgPathMatch.length > 0) {
-          window.open(url[0] + imgPathMatch[0].substring(1));
+          if(imgMatch && imgMatch.length > 0){
+            window.open(url[0] + imgMatch[0]);
+          } else if(imgPathMatch && imgPathMatch.length > 0) {
+            window.open(url[0] + imgPathMatch[0].substring(1));
+          }
+          removePopup();
+          break;
         }
-        removePopup();
-        break;
-      }
 
-      target = target.parentNode;
-    }
-}, true);
+        target = target.parentNode;
+      }
+  }, true);
+}
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
